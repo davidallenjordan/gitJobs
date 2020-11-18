@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitJobs</title>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1><a href="index.html">GitJobs</a></h1>
+      <p>Search through the GitHub Jobs database to find your next development position</p>
+    </nav>
+
+    <!-- Search bar with location and full time filter options -->
+
+    <form class="searchBar">
+      <label>
+        Search by title, companies, expertise
+        <input type="text" placeholder="Search by title, companies, expertise...">
+      </label>
+      <label>
+        Filter by location
+        <input type="text" placeholder="Filter by location...">
+      </label>
+      <label>
+        <input type="checkbox">
+        Full Time Only
+      </label>
+      <button>Search</button>
+    </form>
+  </header>
+
+  <main>
+    <!-- Job postings grid, populated by a query -->
+    <section class="jobPostings"></section>
+
+    <!-- Addition details for selected job posting -->
+    <section class="jobDescription"></section>
+  </main>
+
+  <Footer>Copyright 2020 David Allen-Jordan</Footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
