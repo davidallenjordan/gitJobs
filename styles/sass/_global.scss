@@ -1,0 +1,60 @@
+// Fonts and Colours
+$baseFont: 'Roboto', sans-serif;
+$white: #FFF;
+$black: #000;
+$backColor: #FAFAFB;
+$middleColor: #E6F2FF;
+$buttonColor: #0060FF;
+
+
+// Reset Styles
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+// Global Styles
+a,
+button {
+  font-family: inherit;
+}
+
+button {
+  padding: 10px 20px;
+  background: $buttonColor;
+  color: $white;
+
+  border: none;
+  border-radius: 5px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: $backColor;
+  color: $black;
+  font-family: $baseFont;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 10px;
+}

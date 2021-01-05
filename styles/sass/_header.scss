@@ -1,0 +1,59 @@
+a {
+  text-decoration: none;
+  color: $black;
+}
+
+h1 {
+  
+  font-size: 4rem;
+  font-weight: 500;
+  padding: 20px 20px 0 0;
+}
+
+h1,
+p {
+  display: inline-block;
+}
+
+p {
+  font-size: 2rem;
+}
+
+i {
+  padding-left: 20px;
+  color: $buttonColor;
+}
+
+form {
+  margin: 20px;
+  font-size: 1.6rem;
+  background: #FFF;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .searchField {
+    width: 35%;
+  }
+
+  .locationField {
+    width: 35%;
+  } 
+  
+  input[type="checkbox"] {
+    box-shadow: 0 0 0 1px $buttonColor;
+  }
+}
+
+
+
+// Inputs
+#search,
+#location {
+  padding: 20px 5px;
+  border: none;
+  border-right: 2px solid $backColor;
+}
+

@@ -65,7 +65,7 @@
           </div>
         `;
 
-        jobPostings.insertAdjacentHTML('beforebegin', jobPost);
+        jobPostings.insertAdjacentHTML('afterbegin', jobPost);
 
       });
     }
@@ -73,9 +73,9 @@
     app.handleJopPostClick = () => {
       const jobPost = document.querySelectorAll('.jobPost');
       console.log(jobPost);
-      jobPost.addEventListener('click', () => {
+      // jobPost.addEventListener('click', () => {
         
-      });
+      // });
 
     };
     
