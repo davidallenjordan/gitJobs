@@ -32,8 +32,10 @@
           <input type="text" name="location" id="location" placeholder="Filter by location...">
         </div>        
         <div class="submitButton">
-          <input type="checkbox" name="full time" id="fullTime">
-          <label for="fullTime">Full Time Only</label>
+          <!-- <div> -->
+            <input type="checkbox" name="full time" id="fullTime">
+            <label for="fullTime">Full Time Only</label>
+          <!-- </div>           -->
           <button type="submit">Search</button>
         </div>      
       </form>
@@ -45,22 +47,31 @@
       <!-- Job postings grid, populated by a query -->
       <section class="jobPostings">
         <!-- Jobs are rendered in here -->
+        <!-- Postings placeholder for initial page load -->
+        <div class="jobPostingsPlaceholder">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </section>
   
       <!-- Addition details for selected job posting -->
       <section class="jobDescription">
         <div class="jobHeader">
        <!-- job header rendered here -->
+       <!--  Header placeholder for initial page load -->
+          <div class="jobHeaderPlaceholder">
+            <span></span>
+            <span></span>
+          </div>
         </div>
-
         <div class="jobDetails"></div>
         <!-- Details are rendered in here -->
+        <!-- Details placeholder for initial page load -->
+        <div class="jobDetailsPlaceholder"></div>
       </section>
-    </main>
-  </div>
 
-  <div class="wrapper">
-    <Footer>Copyright 2020 David Allen-Jordan</Footer>
+    </main>
   </div>
 
   <script src="./script.js"></script>

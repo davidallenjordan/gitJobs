@@ -32,7 +32,7 @@ button {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 25px;
   background: $buttonColor;
   color: $white;
 
@@ -41,10 +41,12 @@ button {
 }
 
 html {
+  height: 100vh;
   font-size: 62.5%;
 }
 
-body {
+body {  
+  height: 100%;
   background: $backColor;
   color: $black;
   font-family: $baseFont;
@@ -57,4 +59,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+main {
+  display: flex;
 }

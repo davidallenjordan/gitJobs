@@ -4,15 +4,16 @@ a {
 }
 
 h1 {
-  
   font-size: 4rem;
   font-weight: 500;
   padding: 20px 20px 0 0;
 }
 
-h1,
-p {
-  display: inline-block;
+header {
+  h1,
+  p {
+    display: inline-block;
+  }
 }
 
 p {
@@ -32,18 +33,41 @@ form {
 
   display: flex;
   align-items: center;
-  justify-content: center;
 
   .searchField {
-    width: 35%;
+    width: 40%;
   }
 
   .locationField {
-    width: 35%;
+    width: 30%;
   } 
   
   input[type="checkbox"] {
     box-shadow: 0 0 0 1px $buttonColor;
+  }
+
+  .submitButton {
+    width: 30%;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+
+    label {
+      padding: 0 40px 0 10px;
+    }
+  }
+
+  input[type="text"] {
+    width: 85%;
+  }
+
+  input::placeholder,
+  .submitButton label {
+    color: gray;
+    font-family: $baseFont;
+    opacity: 80%;
   }
 }
 
@@ -54,6 +78,14 @@ form {
 #location {
   padding: 20px 5px;
   border: none;
+  // border-right: 2px solid $backColor;
+}
+
+.searchField,
+.locationField {
   border-right: 2px solid $backColor;
 }
 
+.locationField {
+  width: 90%;
+}
