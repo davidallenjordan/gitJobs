@@ -248,7 +248,7 @@ button {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 25px;
   background: #0060FF;
   color: #FFF;
   border: none;
@@ -256,10 +256,12 @@ button {
 }
 
 html {
+  height: 100vh;
   font-size: 62.5%;
 }
 
 body {
+  height: 100%;
   background: #FAFAFB;
   color: #000;
   font-family: "Roboto", sans-serif;
@@ -274,6 +276,12 @@ body {
   padding: 0 10px;
 }
 
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 a {
   text-decoration: none;
   color: #000;
@@ -285,8 +293,8 @@ h1 {
   padding: 20px 20px 0 0;
 }
 
-h1,
-p {
+header h1,
+header p {
   display: inline-block;
 }
 
@@ -310,17 +318,14 @@ form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 form .searchField {
-  width: 35%;
+  width: 40%;
 }
 
 form .locationField {
-  width: 35%;
+  width: 30%;
 }
 
 form input[type="checkbox"] {
@@ -328,17 +333,81 @@ form input[type="checkbox"] {
           box-shadow: 0 0 0 1px #0060FF;
 }
 
+form .submitButton {
+  width: 30%;
+  padding-right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 20px;
+}
+
+form .submitButton label {
+  padding: 0 40px 0 10px;
+}
+
+form input[type="text"] {
+  width: 85%;
+}
+
+form input::-webkit-input-placeholder,
+form .submitButton label {
+  color: gray;
+  font-family: "Roboto", sans-serif;
+  opacity: 80%;
+}
+
+form input:-ms-input-placeholder,
+form .submitButton label {
+  color: gray;
+  font-family: "Roboto", sans-serif;
+  opacity: 80%;
+}
+
+form input::-ms-input-placeholder,
+form .submitButton label {
+  color: gray;
+  font-family: "Roboto", sans-serif;
+  opacity: 80%;
+}
+
+form input::placeholder,
+form .submitButton label {
+  color: gray;
+  font-family: "Roboto", sans-serif;
+  opacity: 80%;
+}
+
 #search,
 #location {
   padding: 20px 5px;
   border: none;
+}
+
+.searchField,
+.locationField {
   border-right: 2px solid #FAFAFB;
 }
 
-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.locationField {
+  width: 90%;
+}
+
+.jobPostingsPlaceholder div {
+  background: #FFF;
+  opacity: 70%;
+  height: 200px;
+}
+
+.jobPostingsPlaceholder div:first-of-type,
+.jobPostingsPlaceholder div:nth-of-type(2) {
+  margin-bottom: 10px;
 }
 
 .jobPostings,
@@ -354,18 +423,73 @@ main {
   display: grid;
   -ms-grid-columns: (minmax(200px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  gap: 10px;
 }
 
-.jobPostings div {
+.jobPostings div:not(.jobPostingsPlaceholder) {
   padding: 10px;
   background: #FFF;
 }
 
-.jobPostings div img {
-  width: 30%;
+.jobPostings div:not(.jobPostingsPlaceholder) img {
+  width: 20%;
+  padding-bottom: 10px;
 }
 
 .jobDescription {
   width: 60%;
+}
+
+.jobPost p {
+  line-height: 1.5;
+  font-size: 1.8rem;
+}
+
+.jobPost p:nth-of-type(1),
+.jobPost p:nth-of-type(2) {
+  display: inline-block;
+}
+
+.jobPost p:nth-of-type(1),
+.jobPost p:nth-of-type(2),
+.jobPost p:nth-of-type(4) {
+  color: #949494;
+}
+
+.jobPost p:nth-of-type(5) {
+  color: #616161;
+}
+
+.jobHeaderPlaceholder {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.jobHeaderPlaceholder span {
+  display: block;
+  opacity: 70%;
+}
+
+.jobHeaderPlaceholder span:first-of-type {
+  width: 100px;
+  height: 100px;
+  background: lightgrey;
+}
+
+.jobHeaderPlaceholder span:last-of-type {
+  width: calc(100% - 100px);
+  height: 100px;
+  background: #FFF;
+}
+
+.jobDetailsPlaceholder {
+  width: 100%;
+  height: 500px;
+  background: #FFF;
+  opacity: 70%;
 }

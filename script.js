@@ -22,6 +22,7 @@
         }
         response.json().then(function(data) {
           console.log(data);
+          app.removePlaceholders();
           app.displayResults(data);
         });
       }
@@ -31,6 +32,13 @@
       });
 
     };
+  
+
+    // Clear placeholders
+    app.removePlaceholders = () => {
+      const jobPostings = document.querySelector('.jobPostings');
+      jobPostings.innerHTML = '';
+    }
 
     // Display job results on the page
     app.displayResults = (jobData) => {
@@ -56,8 +64,8 @@
 
         const jobPost = `
           <div class="jobPost">
-            <img src="${company_logo}"></img>
-            <p>${created}</p>
+            <img src="${company_logo}" alt="Logo for ${company}"></img>
+            <p>${created} - </p>
             <p>${type}</p>
             <p>${title}</p>
             <p>${company}</p>
@@ -65,10 +73,12 @@
           </div>
         `;
 
-        jobPostings.insertAdjacentHTML('afterbegin', jobPost);
-
+        // insert rendered postings into jobPostings
+        jobPostings.insertAdjacentHTML("afterbegin", jobPost);
       });
     }
+
+    // On jobPost click render information on details container.
 
     app.handleJopPostClick = () => {
       const jobPost = document.querySelectorAll('.jobPost');
