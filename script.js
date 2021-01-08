@@ -1,13 +1,7 @@
-// on page load
-  // call API and populate "postings" with default results
-
-// on click onto job posting
-  // Show addition information in "description"
-
-  // GitJobs Name Space
+// GitJobs Name Space
   const app = () => {};
   
-  // Get results from github API
+  // Get data from GitHub Jobs API
   app.getJobData = () => {
     const proxyurl = 'https://ancient-oasis-20473.herokuapp.com/';
     const url = 'https://jobs.github.com/positions.json/';
@@ -22,7 +16,7 @@
         }
         response.json().then(function(data) {
           console.log(data);
-          app.removePlaceholders();
+          app.removePostingsPlaceholder();
           app.displayJobs(data);
         });
       }
@@ -30,23 +24,16 @@
       .catch(function(err) {
         console.log('Fetch Error', err);
       });
-
     };
   
-
-    // Clear placeholders
-    app.removePlaceholders = () => {
+    // Clear .jobPostings placeholder
+    app.removePostingsPlaceholder = () => {
       const jobPostings = document.querySelector('.jobPostings');
       jobPostings.innerHTML = '';
-
-      // const jobDescription = document.querySelector('.jobDescription');
-      // jobDescription.innerHTML = '';
     }
 
-    // Display job results on the page
+    // Decontruct API data into variables with HTML literals
     app.displayJobs = (jobData) => {
-      const jobPostings = document.querySelector('.jobPostings');
-      // const jobDescription = document.querySelector('.jobDescription');
       const posts = [];
       let postID = 0;
       
@@ -65,7 +52,7 @@
           url 
         } = job;
 
-        // Trim down the created_at string
+        // Trim down date
         const created = created_at.substr(0,9);
 
         const jobPost = `
@@ -95,44 +82,38 @@
             ${how_to_apply}
             <p>${description}</p>
             <p>Job Posting ID: ${id}</p>
+          </div>
         `
 
-        const posting = {
-          jobPost: jobPost,
-          jobDetails: jobDetails
-        };
-
-        posts.push(posting);
+        posts.push(jobDetails);
         postID++;
 
-        // insert rendered postings into jobPostings
-        jobPostings.insertAdjacentHTML('beforeend', jobPost);
-        // jobDescription.insertAdjacentHTML('afterbegin', jobDetails);
-
+        app.displayJobPosts(jobPost);
       });
-
-      console.log(posts);
 
       app.handleJopPostClick(posts);
     }
 
+    // Populate .jobPostings with jobPost
+    app.displayJobPosts = (jobPost) => {
+      const jobPostings = document.querySelector('.jobPostings');
+      jobPostings.insertAdjacentHTML('beforeend', jobPost);
+    };
+
+    // Clears .jobDetails to prepare for new details
     app.removeDetails = () => {
       const jobDescription = document.querySelector('.jobDescription');
       jobDescription.innerHTML = '';
     }
 
-    // On jobPost-click render information in details container
+    // Listens for .jobPost click and passes on clicked ID 
     app.handleJopPostClick = (posts) => {
-
-
       const jobPosts = document.querySelectorAll('.jobPost');
 
       function showDetails(event) {      
         app.removeDetails();
 
         const clickedJobPost = event.currentTarget;
-        // clickedJobPost.closest('.jobPost')
-        console.log(clickedJobPost);
         const clickedJobID = clickedJobPost.attributes[1].value;
 
         app.renderDetails(clickedJobID, posts);
@@ -141,11 +122,11 @@
       jobPosts.forEach(post => post.addEventListener('click', showDetails));
     };
 
-    // Print details onto page using ID reference for index selection
+    // Uses clicked ID to render appropriate details in .jobDetails
     app.renderDetails = (jobID, posts) => {
       const jobDescription = document.querySelector('.jobDescription');
 
-      jobDescription.insertAdjacentHTML('beforeend', posts[jobID].jobDetails);
+      jobDescription.insertAdjacentHTML('beforeend', posts[jobID]);
     }
     
     // Initialize the app
