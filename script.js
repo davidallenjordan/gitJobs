@@ -1,12 +1,24 @@
+// Create a "More Jobs" button at end of job posts to change pagination/page number (plus 1)
+
+
 // GitJobs Name Space
   const app = () => {};
   
   // Get data from GitHub Jobs API
-  app.getJobData = () => {
+  app.getJobData = (search = '', location = 'Canada', fullTime = false, page = 0) => {
     const proxyurl = 'https://ancient-oasis-20473.herokuapp.com/';
-    const url = 'https://jobs.github.com/positions.json/';
+    const url = new URL(`https://jobs.github.com/positions.json?`);
+    const params = new URLSearchParams(url);
+
+    params.set('search', search);
+    params.set('location', location);
+    params.set('full_time', fullTime);
+    params.set('page', page);
+
+    params.toString();
+    console.log(proxyurl + url + params);
     
-    fetch(proxyurl + url)
+    fetch(proxyurl + url + params)
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -15,9 +27,9 @@
           return;
         }
         response.json().then(function(data) {
-          console.log(data);
-          app.removePostingsPlaceholder();
+          app.removePostings();
           app.displayJobs(data);
+          console.log(data);
         });
       }
       )
@@ -25,14 +37,38 @@
         console.log('Fetch Error', err);
       });
     };
-  
+
+    // Listens for search bar inputs
+    app.handleSearchBar = () => {
+      const form = document.querySelector('#searchForm')
+            
+      function submitForm(event) {
+        event.preventDefault();
+        const search = document.querySelector('#search').value;
+        const location = document.querySelector('#location').value;
+
+        let fullTime = document.querySelector('#fullTime');
+        if (fullTime.checked) {
+          fullTime = true
+        } else {
+          fullTime = false
+        };
+                
+        app.getJobData(search, location, fullTime);
+      }
+      
+      form.addEventListener('submit', submitForm);
+    };
+    
+    app.handleSearchBar();
+
     // Clear .jobPostings placeholder
-    app.removePostingsPlaceholder = () => {
+    app.removePostings = () => {
       const jobPostings = document.querySelector('.jobPostings');
       jobPostings.innerHTML = '';
-    }
+    };
 
-    // Decontruct API data into variables with HTML literals
+    // Destructure API data into variables with HTML literals
     app.displayJobs = (jobData) => {
       const posts = [];
       let postID = 0;
@@ -99,35 +135,46 @@
       const jobPostings = document.querySelector('.jobPostings');
       jobPostings.insertAdjacentHTML('beforeend', jobPost);
     };
-
-    // Clears .jobDetails to prepare for new details
-    app.removeDetails = () => {
-      const jobDescription = document.querySelector('.jobDescription');
-      jobDescription.innerHTML = '';
-    }
-
+    
     // Listens for .jobPost click and passes on clicked ID 
     app.handleJopPostClick = (posts) => {
       const jobPosts = document.querySelectorAll('.jobPost');
+      
+      // Clears .jobDetails to prepare for new details
+      function removeDetails() {
+        const jobDescription = document.querySelector('.jobDescription');
+        jobDescription.innerHTML = '';
+      }
 
-      function showDetails(event) {      
-        app.removeDetails();
+      function showDetails(event) {    
 
+        removeDetails();
         const clickedJobPost = event.currentTarget;
         const clickedJobID = clickedJobPost.attributes[1].value;
+        
+        // Toggle border around the active post
+        function toggleBorder() {
+          const activePost = document.querySelector('.activeJobPost');
+          if(activePost !==null) {
+            activePost.classList.remove('activeJobPost')
+          };
+          clickedJobPost.classList.toggle('activeJobPost');
+        };
+        
+        // Uses clicked ID to render appropriate details in .jobDetails
+        function renderDetails(jobID, posts) {
+          const jobDescription = document.querySelector('.jobDescription');
+    
+          jobDescription.insertAdjacentHTML('beforeend', posts[jobID]);
+        }
 
-        app.renderDetails(clickedJobID, posts);
+        renderDetails(clickedJobID, posts);
+        toggleBorder();
       }
 
       jobPosts.forEach(post => post.addEventListener('click', showDetails));
     };
 
-    // Uses clicked ID to render appropriate details in .jobDetails
-    app.renderDetails = (jobID, posts) => {
-      const jobDescription = document.querySelector('.jobDescription');
-
-      jobDescription.insertAdjacentHTML('beforeend', posts[jobID]);
-    }
     
     // Initialize the app
     app.init = () => {
