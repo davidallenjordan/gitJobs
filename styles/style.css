@@ -429,18 +429,19 @@ form .submitButton label {
   gap: 10px;
 }
 
-.jobPostings div:not(.jobPostingsPlaceholder) {
-  padding: 10px;
-  background: #FFF;
-}
-
-.jobPostings div:not(.jobPostingsPlaceholder) img {
-  width: 20%;
-  padding-bottom: 10px;
-}
-
 .jobDescription {
   width: 60%;
+}
+
+.jobPost {
+  padding: 10px;
+  background: #FFF;
+  border: 2px solid transparent;
+}
+
+.jobPost img {
+  width: 20%;
+  padding-bottom: 10px;
 }
 
 .jobPost p {
@@ -461,6 +462,12 @@ form .submitButton label {
 
 .jobPost p:nth-of-type(5) {
   color: #616161;
+}
+
+.activeJobPost {
+  -webkit-transition: border .03s;
+  transition: border .03s;
+  border: 2px solid #0060FF;
 }
 
 .jobHeaderPlaceholder {
